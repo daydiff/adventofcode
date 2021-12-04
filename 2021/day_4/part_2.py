@@ -37,11 +37,21 @@ class Board:
 
 class Solution:
     def solve(self, nums: list, boards: list) -> int:
+        nb = len(boards)
+        winners = set()
+
         for n in nums:
-            for b in boards:
+            for i in range(nb):
+                if i in winners:
+                    continue
+
+                b = boards[i]
                 if b.draw(n):
+                    winners.add(i)
+                if len(winners) == nb:
                     return n * b.score()
-        return 0
+
+        return -1
 
 ## read input
 __location__ = os.path.realpath(
