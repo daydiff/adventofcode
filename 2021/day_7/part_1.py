@@ -9,12 +9,10 @@ with open(os.path.join(__location__, "input"), "r") as file:
 
 ## solve
 numbers = list(map(int, data.split(",")))
-r = int("inf")
+r = float("inf")
 
-for g in range(min(numbers), max(numbers) + 1):
-    s = 0
-    for n in numbers:
-        s += abs(n - g)
+for pos in range(min(numbers), max(numbers) + 1):
+    s = sum(abs(n - pos) for n in numbers)
     r = min(r, s)
 
 print(r)

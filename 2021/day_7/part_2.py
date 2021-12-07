@@ -11,17 +11,12 @@ with open(os.path.join(__location__, "input"), "r") as file:
 numbers = list(map(int, data.split(",")))
 r = float("inf")
 
-dist = {}
-
-cost = 0
-for i in range(0, max(numbers) + 1):
-    cost += i
-    dist[i] = cost
+# maybe even better f = lambda n: n * (n + 1) // 2
+def f(n: int) -> int:
+    return n * (n + 1) // 2
 
 for pos in range(min(numbers), max(numbers) + 1):
-    s = 0
-    for n in numbers:
-        s += dist[abs(n - pos)]
+    s = sum(f(abs(n - pos)) for n in numbers)
     r = min(r, s)
 
 print(r)
