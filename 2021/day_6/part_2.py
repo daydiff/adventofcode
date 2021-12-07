@@ -25,7 +25,7 @@ def calc(timer: int, days: int) -> int:
     for i in range(0, cnt):
         idays = ldays - i * 7
         icnt = calc(8, idays)
-        memo[(6, idays)] = icnt
+        memo[(6, idays)] = icnt # another mistake was here (7 instead of 6) - but I spotted it fairly quickly today
         cnt += icnt
 
     memo[(timer, days)] = cnt + 1
