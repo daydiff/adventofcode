@@ -28,19 +28,18 @@ for l in data.splitlines():
     complete = True
 
     for c in list(l):
-        if c in braks.keys():
+        if c in braks:
             q.append(c)
         elif braks[q.pop()] != c:
-            complete = False
             break
     # didn't notice that I was counting illegal sequences as well
     # took ~10 to find it out
-    if not complete: continue
-    acc = 0
-    while q:
-        c = q.pop()
-        acc = acc * 5 + weights[braks[c]]
-    scores.append(acc)
+    else: # else executes if the loop completes normally (no break statement)
+        acc = 0
+        while q:
+            c = q.pop()
+            acc = acc * 5 + weights[braks[c]]
+        scores.append(acc)
 
 scores.sort()
 mid = len(scores) // 2
