@@ -25,10 +25,15 @@ with open(os.path.join(__location__, 'input'), "r") as file:
         if line == '':
             for k, v in enumerate(stacks):
                 stacks[k].reverse()
-            continue
+            break
         if line[1] == '1':
             continue
-        
+
+        for k, v in enumerate(indices):
+            if line[v] != ' ':
+                stacks[k].append(line[v])
+
+    for line in file:
         if line[0] == 'm':
             moves = line.split(' ')
             cnt = int(moves[1])
@@ -37,10 +42,6 @@ with open(os.path.join(__location__, 'input'), "r") as file:
             for i in range(cnt):
                 crate = stacks[src].pop()
                 stacks[dst].append(crate)
-        else:
-            for k, v in enumerate(indices):
-                if line[v] != ' ':
-                    stacks[k].append(line[v])
 
 result = []
 for i, v in enumerate(stacks):
